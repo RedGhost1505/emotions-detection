@@ -54,6 +54,8 @@ export default function HomePage() {
     }
   };
 
+  // Efecto para acceder a la cámara
+
   useEffect(() => {
     if (isCapturing && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
