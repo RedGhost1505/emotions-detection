@@ -34,11 +34,11 @@ export default function LandingPage() {
     }
   };
 
-  const popupAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-    exit: { opacity: 0, y: 20, transition: { duration: 0.3 } },
-  };
+  // const popupAnimation = {
+  //   hidden: { opacity: 0, y: 20 },
+  //   visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  //   exit: { opacity: 0, y: 20, transition: { duration: 0.3 } },
+  // };
 
   const iconAnimation = {
     hidden: { opacity: 0, x: 0 },
