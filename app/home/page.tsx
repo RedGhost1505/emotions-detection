@@ -49,12 +49,21 @@ export default function HomePage() {
         },
       });
 
-      const botMessage = response.data.chat;
+      let botMessage = response.data.chat;
+
+      // Formatear el texto eliminando '#' y '*' del mensaje
+      botMessage = botMessage
+        .replace(/#/g, "")  // Elimina los '#'
+        .replace(/\*/g, "") // Elimina los '*'
+        .replace(/###/g, "\n\n") // Opcional: Reemplazar '###' con saltos de línea adicionales para dividir secciones
+        .replace(/-/g, "\n- "); // Formatear las listas correctamente
+
       setChatMessages((prevMessages) => [
         ...prevMessages,
         { sender: "You", message: userMessage },
         { sender: "Emoting", message: botMessage },
       ]);
+
       setUserMessage("");
     } catch (error) {
       console.error("Error al enviar la imagen y el texto:", error);
@@ -63,6 +72,7 @@ export default function HomePage() {
       setLoading(false); // Desactivar el estado de carga
     }
   };
+
 
 
   // Efecto para acceder a la cámara
