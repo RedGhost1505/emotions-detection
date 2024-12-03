@@ -79,8 +79,15 @@ export default function LandingPage() {
                 exit="exit"
                 variants={iconAnimation}
               >
-                <Github className="text-white" size={32} />
-                <File className="text-white" size={32} />
+                <Github
+                  className="text-white"
+                  size={32}
+                  onClick={() => window.open('https://huggingface.co/spaces/Pingul/AgentesInteligentes/tree/main', '_blank')}
+                />
+                <File
+                  className="text-white"
+                  size={32}
+                  onClick={() => window.open('https://docs.google.com/document/d/1vUN98bhJk805vn65IapNM0v1ndajHwyoKezn-H6w9qs/edit?tab=t.0', '_blank')} />
               </motion.div>
             )}
           </AnimatePresence>

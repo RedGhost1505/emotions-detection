@@ -30,8 +30,18 @@ export default function HomePage() {
         return;
       }
 
-      const response = await axios.post('http://localhost:5000/upload_info', {
-        img: capturedFrame.replace(/^data:image\/(png|jpeg);base64,/, ""),
+      // Verifica y limpia la cadena Base64 eliminando el prefijo
+      const base64Image = capturedFrame.replace(/^data:image\/(png|jpeg);base64,/, "");
+
+      // Asegúrate de que la cadena tenga una longitud adecuada y sea válida
+      if (base64Image.length % 4 !== 0) {
+        console.error("La cadena Base64 es inválida. Revisa el formato.");
+        alert("La imagen que intentas enviar es inválida. Inténtalo de nuevo.");
+        return;
+      }
+
+      const response = await axios.post('https://pingul-agentesinteligentes.hf.space/upload_info', {
+        img: base64Image, // Envía la imagen sin el prefijo Base64
         text: userMessage,
       }, {
         headers: {
@@ -53,6 +63,7 @@ export default function HomePage() {
       setLoading(false); // Desactivar el estado de carga
     }
   };
+
 
   // Efecto para acceder a la cámara
 
@@ -82,6 +93,9 @@ export default function HomePage() {
         ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
         const frame = canvas.toDataURL("image/png");
         setCapturedFrame(frame);
+
+        // Log la imagen en base 64 en la consola
+        console.log("Imagen capturada en base 64:", frame);
       }
 
       setIsFlash(true);
@@ -97,6 +111,7 @@ export default function HomePage() {
       }, 200);
     }
   };
+
 
   const retryCapture = () => {
     setCapturedFrame(null);
